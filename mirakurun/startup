@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if !(type "recpt1" > /dev/null 2>&1); then
+  apt-get update
+
+  apt-get install -y autoconf build-essential cmake curl git libssl-dev libtool libboost-all-dev pkg-config yasm
+  cd /tmp
+  git clone https://github.com/stz2012/libarib25.git
+  cd libarib25
+  cmake .
+  make
+  make install
+  ldconfig
+
+  apt-get install -y --no-install-recommends git autoconf automake
+
+  cd /tmp
+  git clone https://github.com/stz2012/recpt1.git
+  cd recpt1/recpt1
+  ./autogen.sh
+  ./configure --enable-b25 --prefix /opt
+  make
+  make install
+fi
+
+recpt1 -v

@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:14-alpine
 LABEL maintainer "h-mineta <h-mineta@0nyx.net>"
 
 ENV DOCKER="YES"

@@ -3,12 +3,11 @@ Mirakurun と Chinachu をDockerコンテナに閉じ込めました
 
 ## Constitution
 ### Mirakurun
-- Alpine Linux 3.8(node:10-alpine)
 - [Mirakurun](https://github.com/Chinachu/Mirakurun)
-  - branch: master
+  - https://github.com/Chinachu/Mirakurun/blob/master/docker/Dockerfile
 
 ### Chinachu
-- Alpine Linux 3.8(node:10-alpine)
+- Alpine Linux 3.8(node:14-alpine)
 - [Chinachu](https://github.com/Chinachu/Chinachu)
   - branch: gamma
 
@@ -73,35 +72,15 @@ docker-compose up -d
 docker-compose down
 ```
 
-### デーモン化(systemd)
-初期では「WorkingDirectory」が「/usr/local/projects/tvs/」となっています  
-設置した箇所に応じて、書き換えてください
+## startup script
 ```shell
-vi mirakurun-user.service
-vi chinachu-user.service
-```
+mkdir -p /opt/mirakurun/opt/bin
+cp mirakurun/startup /opt/mirakurun/opt/bin/startup
+chmod +x /opt/mirakurun/opt/bin/startup
 
-ユーザ固有サービスとして動かすため、設定します
-```shell
-mkdir -p ~/.config/systemd/user/
-mv mirakurun-user.service ~/.config/systemd/user/
-mv chinachu-user.service ~/.config/systemd/user/
-## 永続化(次回OS起動時に自動で起動)
-systemctl --user enable mirakurun-user.service
-systemctl --user enable chinachu-user.service
-sudo loginctl enable-linger `whoami`
-
-# 手動起動
-systemctl --user start mirakurun-user.service
-systemctl --user start chinachu-user.service
-
-# 動作確認
-systemctl --user status mirakurun-user.service
-systemctl --user status chinachu-user.service
-
-# 手動停止
-systemctl --user stop mirakurun-user.service
-systemctl --user stop chinachu-user.service
+docker-compose down
+docker-compose run --rm -e SETUP=true mirakurun
+docker-compose up -d
 ```
 
 ## 設定
