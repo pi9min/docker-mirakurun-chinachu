@@ -28,7 +28,7 @@ Docker version 20.10.21, build baeda1f
 * PX-MLT5PE 
 
 ### Smart card reader
-* SCM ICカードリーダー/ライター B-CAS・住基カード対応 SCR3310/v2.0[Amazon.co.jp](https://www.amazon.co.jp/gp/product/B0085H4YZC)  
+* SCM ICカードリーダー/ライター B-CAS・住基カード対応 SCR3310/v2.0 ([Amazon.co.jp])(https://www.amazon.co.jp/gp/product/B0085H4YZC)  
 
 ## 利用方法
 - 最新のdockerがインストール済 (docker compose コマンドがない場合は docker-compose も必要)
@@ -62,6 +62,9 @@ cd tvs
 
 #### startup script
 ```shell
+sudo mv -vf /usr/local/mirakurun /opt/mirakurun
+sudo mkdir -p /opt/mirakurun/run /opt/mirakurun/opt /opt/mirakurun/config /opt/mirakurun/data
+
 mkdir -p /opt/mirakurun/opt/bin
 cp mirakurun/startup /opt/mirakurun/opt/bin/startup
 chmod +x /opt/mirakurun/opt/bin/startup
