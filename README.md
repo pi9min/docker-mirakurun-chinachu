@@ -25,10 +25,10 @@ Docker version 20.10.21, build baeda1f
 ```
 
 ### チューナー
-* PX-MLT5PE 
+* 株式会社プレクス PX-MLT5PE [[公式サイト](http://www.plex-net.co.jp/product/px-mlt5pe/)]  
 
 ### Smart card reader
-* SCM ICカードリーダー/ライター B-CAS・住基カード対応 SCR3310/v2.0 ([Amazon.co.jp])(https://www.amazon.co.jp/gp/product/B0085H4YZC)  
+* SCM ICカードリーダー/ライター B-CAS・住基カード対応 SCR3310/v2.0 [[Amazon.co.jp](https://www.amazon.co.jp/gp/product/B0085H4YZC)]  
 
 ## 利用方法
 - 最新のdockerがインストール済 (docker compose コマンドがない場合は docker-compose も必要)
