@@ -1,0 +1,44 @@
+- name: adapter_px0
+  types:
+    - GR
+    - BS
+    - CS
+    - SKY
+  command: /opt/bin/recpt1 --b25 --strip --device /dev/pxmlt5video0 <channel> - -
+  decoder: arib-b25-stream-test
+- name: adapter_px1
+  types:
+    - GR
+    - BS
+    - CS
+    - SKY
+  command: /opt/bin/recpt1 --b25 --strip --device /dev/pxmlt5video1 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+- name: adapter_px2
+  types:
+    - GR
+    - BS
+    - CS
+    - SKY
+  command: /opt/bin/recpt1 --b25 --strip --device /dev/pxmlt5video2 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+- name: adapter_px3
+  types:
+    - GR
+    - BS
+    - CS
+    - SKY
+  command: /opt/bin/recpt1 --b25 --strip --device /dev/pxmlt5video3 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
+- name: adapter_px4
+  types:
+    - GR
+    - BS
+    - CS
+    - SKY
+  command: /opt/bin/recpt1 --b25 --strip --device /dev/pxmlt5video4 <channel> - -
+  decoder: arib-b25-stream-test
+  isDisabled: false
