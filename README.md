@@ -12,42 +12,38 @@ Mirakurun と Chinachu をDockerコンテナに閉じ込めました
   - branch: gamma
 
 ## 動作確認環境
-> OS
->>CentOS Linux release 7.2.1511 (Core)  
->> Linux 3.10.0-327.22.2.el7.x86_64  
->
->>Fedora release 25 (Twenty Five)  
->> Linux 4.9.4-201.fc25.x86_64  
->
->>Fedora release 27 (Twenty Seven)  
->> Linux 4.18.12-100.fc27.x86_64  
->
->>Fedora release 30 (Thirty)  
->> Linux 5.2.18-200.fc30.x86_64  
 
->Docker
->>version 1.11.2, build b9f10c9  
->>version 17.03.0-ce, build 60ccb22  
->>version 1.13.1, build 9c9378f-unsupported  
->>version 1.13.1, build 47e2230/1.13.1  
+```shell
+# cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu 22.04.1 LTS"
 
->Tuner
->>ISDB-S, ISDB-T Tuner PT3  
+# docker -v
+Docker version 20.10.21, build baeda1f
+```
 
->Smart card reader
->>USB SmartCard Reader NTT Communications Corp. SCR3310-NTTCom  
+### チューナー
+* PX-MLT5PE 
+
+### Smart card reader
+* SCM ICカードリーダー/ライター B-CAS・住基カード対応 SCR3310/v2.0[Amazon.co.jp](https://www.amazon.co.jp/gp/product/B0085H4YZC)  
 
 ## 利用方法
-- 最新のdocker & docker-compose がインストール済
+- 最新のdockerがインストール済 (docker compose コマンドがない場合は docker-compose も必要)
 - SELinuxの無効化
-- ホストマシンにPT3 Driverがインストール済
+- px4_drv導入済み
+
 ```
-$ ls -l /dev/pt*video*
-crw-rw-rw- 1 root video 246, 0 Jun 26 16:07 /dev/pt3video0
-crw-rw-rw- 1 root video 246, 1 Jun 26 16:07 /dev/pt3video1
-crw-rw-rw- 1 root video 246, 2 Jun 26 16:07 /dev/pt3video2
-crw-rw-rw- 1 root video 246, 3 Jun 26 16:07 /dev/pt3video3
+# ls -l /dev/pxm*
+crw-rw-r-- 1 root video 236, 0 11月  8 17:23 /dev/pxmlt5video0
+crw-rw-r-- 1 root video 236, 1 11月  8 17:23 /dev/pxmlt5video1
+crw-rw-r-- 1 root video 236, 2 11月  8 17:23 /dev/pxmlt5video2
+crw-rw-r-- 1 root video 236, 3 11月  8 17:23 /dev/pxmlt5video3
+crw-rw-r-- 1 root video 236, 4 11月  8 17:23 /dev/pxmlt5video4
 ```
+
 - B-CAS 用に利用するスマートカードリーダーはMirakurunコンテナ内で管理しますので  
 ホストマシン上のpcscdは停止してください
 ```
@@ -60,19 +56,11 @@ sudo systemctl disable pcscd.socket
 
 ### 取得例
 ```shell
-git clone https://github.com/Chinachu/docker-mirakurun-chinachu.git tvs
+git clone https://github.com/NAKNAO-nnct/docker-mirakurun-chinachu.git tvs
 cd tvs
 ```
-### 起動
-```shell
-docker-compose up -d
-```
-### 停止
-```shell
-docker-compose down
-```
 
-## startup script
+#### startup script
 ```shell
 mkdir -p /opt/mirakurun/opt/bin
 cp mirakurun/startup /opt/mirakurun/opt/bin/startup
