@@ -38,6 +38,7 @@ RUN set -x \
 		perl-utils \
 	\
 	&& mkdir -p ${WORK_DIR} \
+        && git config --global --add safe.directory /usr/local/chinachu \
 	&& git clone ${REPOSITORY} ${WORK_DIR} \
 	&& chown -R ${USER_NAME} ${WORK_DIR} \
 	&& cd ${WORK_DIR} \
